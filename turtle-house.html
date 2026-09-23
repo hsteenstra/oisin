@@ -12,9 +12,12 @@
 
     <link rel="stylesheet" href="style.css">
 
+
     <!-- BRYTHON -->
-    <script src="https://cdn.jsdelivr.net/npm/brython@3.13.2/brython.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/brython@3.13.2/brython_stdlib.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.14.1/brython.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.14.1/brython_stdlib.js"></script>
 
 </head>
 
@@ -22,214 +25,76 @@
 <body onload="brython()">
 
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 
 <nav class="navbar">
 
-    <a href="index.html"
-       style="text-decoration:none;color:white;font-weight:700;">
-
-        <span class="logo-bracket">&lt;/&gt;</span>
+    <a href="index.html" class="logo">
+        <span>&lt;/&gt;</span>
         Oisin's Coding Lab
-
     </a>
 
-    <div class="nav-links">
-
-        <a href="index.html">
-            ← Back to Projects
-        </a>
-
-    </div>
+    <a href="index.html" class="nav-link">
+        ← Projects
+    </a>
 
 </nav>
 
 
 
-<!-- PROJECT HEADER -->
+<!-- TITLE -->
 
-<section style="
-    padding:70px 7% 45px;
-    background:#07111f;
-">
+<header class="project-header">
 
-    <div class="section-label">
+    <div class="label">
         PROJECT 01 · PYTHON TURTLE
     </div>
 
-    <h1 style="
-        font-size:clamp(45px,6vw,75px);
-        letter-spacing:-4px;
-        margin-top:15px;
-    ">
+    <h1>My Turtle House</h1>
 
-        My Turtle House
-
-    </h1>
-
-    <p style="
-        max-width:650px;
-        color:#91a0b5;
-        font-size:17px;
-        line-height:1.7;
-        margin-top:20px;
-    ">
-
-        Write Python instructions to tell the turtle exactly how
-        to build a house. Then run your program and see what happens.
-
+    <p>
+        Write Python code and watch your turtle draw.
     </p>
 
-</section>
+</header>
 
 
 
-<!-- CODING AREA -->
+<!-- WORKSPACE -->
 
-<section style="
-    padding:0 7% 100px;
-">
-
-    <div class="coding-workspace">
+<main class="workspace">
 
 
-        <!-- LEFT: CODE -->
+    <!-- CODE -->
 
-        <div class="editor-panel">
+    <section class="editor">
 
-            <div class="editor-header">
+        <div class="editor-bar">
 
-                <div>
+            <span>
+                oisin_house.py
+            </span>
 
-                    <span class="editor-title">
-                        oisin_house.py
-                    </span>
-
-                    <span class="python-label">
-                        PYTHON
-                    </span>
-
-                </div>
-
-                <button onclick="runPython()"
-                        class="run-button">
-
-                    ▶ RUN CODE
-
-                </button>
-
-            </div>
-
-
-            <textarea id="pythonCode">
-
-from turtle import *
-
-speed(5)
-
-# -------------------------
-# DRAW THE HOUSE
-# -------------------------
-
-# Draw the square
-forward(150)
-left(90)
-
-forward(150)
-left(90)
-
-forward(150)
-left(90)
-
-forward(150)
-
-# -------------------------
-# DRAW THE ROOF
-# -------------------------
-
-left(30)
-forward(87)
-
-left(120)
-forward(87)
-
-left(120)
-forward(87)
-
-# Return to the starting point
-left(30)
-
-# -------------------------
-# DOOR
-# -------------------------
-
-penup()
-goto(60, 0)
-pendown()
-
-left(90)
-forward(75)
-
-left(90)
-forward(35)
-
-left(90)
-forward(75)
-
-# Finish
-done()
-
-            </textarea>
+            <button onclick="runCode()">
+                ▶ RUN
+            </button>
 
         </div>
 
 
+        <textarea id="code">from browser import document
+import turtle
 
-        <!-- RIGHT: CANVAS -->
-
-        <div class="output-panel">
-
-            <div class="output-header">
-
-                <span>
-                    OUTPUT
-                </span>
-
-                <button onclick="clearCanvas()"
-                        class="reset-button">
-
-                    RESET
-
-                </button>
-
-            </div>
-
-
-            <div class="canvas-wrapper">
-
-                <canvas id="turtle-canvas"
-                        width="600"
-                        height="500">
-                </canvas>
-
-            </div>
-
-
-            <div class="output-info">
-
-                <div>
-
-                    <strong>
-                        YOUR PROGRAM
-                    </strong>
-
-                    <p>
-                        import turtle
+turtle.set_defaults(
+    turtle_canvas_wrapper=document["turtle-div"]
+)
 
 t = turtle.Turtle()
+
 t.speed(5)
 
-# House
+# Draw the house
+
 t.fillcolor("lightblue")
 t.begin_fill()
 
@@ -239,7 +104,8 @@ for i in range(4):
 
 t.end_fill()
 
-# Roof
+# Draw the roof
+
 t.fillcolor("red")
 t.begin_fill()
 
@@ -251,473 +117,369 @@ t.left(45)
 
 t.end_fill()
 
-# Door
-t.penup()
-t.goto(55, 0)
-t.pendown()
-
-t.fillcolor("brown")
-t.begin_fill()
-
-t.left(90)
-t.forward(80)
-t.right(90)
-t.forward(40)
-t.right(90)
-t.forward(80)
-
-t.end_fill()
-
 turtle.done()
-                    </p>
+</textarea>
 
-                </div>
+    </section>
 
-                <div class="status">
 
-                    <span class="status-dot"></span>
 
-                    READY
+    <!-- OUTPUT -->
 
-                </div>
+    <section class="output">
 
-            </div>
+        <div class="output-bar">
+
+            <span>
+                TURTLE OUTPUT
+            </span>
+
+            <button onclick="resetTurtle()">
+                RESET
+            </button>
 
         </div>
 
-    </div>
 
-</section>
-
+        <div id="turtle-div"></div>
 
 
-<!-- PROJECT INFORMATION -->
+        <div class="tip">
 
-<section style="
-    padding:0 7% 100px;
-">
+            <strong>Try changing the code.</strong>
 
-    <div style="
-        max-width:800px;
-        border-top:1px solid rgba(255,255,255,.1);
-        padding-top:40px;
-    ">
+            <span>
+                Change a color, number, or direction
+                and press RUN again.
+            </span>
 
-        <div class="section-label">
-            WHAT I LEARNED
         </div>
 
-        <h2 style="
-            font-size:36px;
-            margin:15px 0;
-        ">
+    </section>
 
-            Python can make pictures.
 
-        </h2>
+</main>
 
-        <p style="
-            color:#91a0b5;
-            line-height:1.8;
-        ">
 
-            In this project, I used Python Turtle commands to
-            control a turtle. I learned how commands such as
-            <code>forward()</code>, <code>left()</code>,
-            <code>penup()</code>, and <code>goto()</code>
-            can work together to create a drawing.
 
-        </p>
+<script>
 
-    </div>
+function runCode() {
 
-</section>
+    resetTurtle();
+
+    const code =
+        document.getElementById("code").value;
+
+
+    try {
+
+        brython({
+            args: ["-c", code]
+        });
+
+    }
+
+    catch(error) {
+
+        showError(error);
+
+    }
+
+}
+
+
+function resetTurtle() {
+
+    document.getElementById("turtle-div").innerHTML = "";
+
+}
+
+
+function showError(error) {
+
+    document.getElementById("turtle-div").innerHTML =
+
+        `<div class="error">
+            <strong>Something went wrong.</strong>
+            <br><br>
+            ${error}
+        </div>`;
+
+}
+
+</script>
 
 
 
 <style>
 
-/* =========================
-   CODING WORKSPACE
-========================= */
 
-.coding-workspace {
+/* PROJECT HEADER */
 
-    display:grid;
+.project-header {
 
-    grid-template-columns:1fr 1fr;
+    max-width: 1100px;
 
-    min-height:600px;
+    margin: auto;
 
-    border:1px solid rgba(255,255,255,.1);
+    padding: 65px 7% 45px;
 
-    background:#0b1829;
+}
+
+.project-header h1 {
+
+    margin: 12px 0;
+
+    font-size: clamp(45px, 6vw, 70px);
+
+    letter-spacing: -4px;
+
+}
+
+.project-header p {
+
+    color: #8796aa;
+
+    font-size: 17px;
+
+}
+
+
+/* WORKSPACE */
+
+.workspace {
+
+    max-width: 1300px;
+
+    margin: auto;
+
+    padding: 0 5% 80px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
 }
 
 
 /* EDITOR */
 
-.editor-panel {
+.editor {
 
-    display:flex;
-    flex-direction:column;
+    min-height: 650px;
 
-    border-right:1px solid rgba(255,255,255,.1);
-}
+    border: 1px solid #1b2c40;
 
-.editor-header,
-.output-header {
-
-    height:60px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 20px;
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-
-    background:#0d1d31;
-}
-
-.editor-title {
-
-    font-family:monospace;
-
-    font-size:13px;
-
-    color:#dbe7f5;
-}
-
-.python-label {
-
-    margin-left:12px;
-
-    font-size:9px;
-
-    letter-spacing:1.5px;
-
-    color:#58d5ff;
-}
-
-.run-button {
-
-    border:none;
-
-    background:#58d5ff;
-
-    color:#06111e;
-
-    padding:9px 14px;
-
-    font-weight:800;
-
-    font-size:11px;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.run-button:hover {
-
-    transform:translateY(-2px);
+    background: #081321;
 
 }
 
-#pythonCode {
+.editor-bar,
+.output-bar {
 
-    flex:1;
+    height: 55px;
 
-    width:100%;
+    padding: 0 18px;
 
-    min-height:540px;
+    display: flex;
 
-    resize:none;
+    align-items: center;
 
-    border:none;
+    justify-content: space-between;
 
-    outline:none;
+    background: #0d1c2e;
 
-    background:#07111f;
+    border-bottom: 1px solid #1b2c40;
 
-    color:#dbe7f5;
+    color: #8796aa;
 
-    padding:25px;
+    font-family: monospace;
 
-    font-family:"SFMono-Regular",Consolas,monospace;
+    font-size: 12px;
 
-    font-size:14px;
+}
 
-    line-height:1.7;
+.editor-bar button {
+
+    border: none;
+
+    background: #55d6ff;
+
+    color: #07111f;
+
+    padding: 9px 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+.editor-bar button:hover {
+
+    background: #8be4ff;
+
+}
+
+
+#code {
+
+    display: block;
+
+    width: 100%;
+
+    height: 595px;
+
+    resize: none;
+
+    outline: none;
+
+    border: none;
+
+    box-sizing: border-box;
+
+    padding: 24px;
+
+    background: #081321;
+
+    color: #dce7f3;
+
+    font-family: monospace;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
 }
 
 
 /* OUTPUT */
 
-.output-panel {
+.output {
 
-    display:flex;
+    min-height: 650px;
 
-    flex-direction:column;
+    border: 1px solid #1b2c40;
+
+    background: white;
 
 }
 
-.output-header {
+.output-bar {
 
-    color:#8190a6;
+    background: #0d1c2e;
 
-    font-size:11px;
+    color: #8796aa;
 
-    letter-spacing:1.5px;
-
-    font-weight:700;
 }
 
-.reset-button {
+.output-bar button {
 
-    background:transparent;
+    background: transparent;
 
-    border:1px solid rgba(255,255,255,.15);
+    border: 1px solid #415269;
 
-    color:#8190a6;
+    color: #aeb9c8;
 
-    padding:7px 12px;
+    padding: 7px 13px;
 
-    font-size:10px;
+    cursor: pointer;
 
-    cursor:pointer;
 }
 
-.canvas-wrapper {
 
-    flex:1;
+/* TURTLE AREA */
 
-    display:flex;
+#turtle-div {
 
-    align-items:center;
+    height: 550px;
 
-    justify-content:center;
+    width: 100%;
 
-    padding:30px;
+    display: flex;
 
-    background:#f4f4f1;
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
 }
 
-#turtle-canvas {
 
-    max-width:100%;
+/* BRYTHON'S SVG */
 
-    height:auto;
+#turtle-div svg {
 
-    background:white;
+    max-width: 100%;
+
+    max-height: 100%;
+
 }
 
-.output-info {
 
-    min-height:90px;
+/* TIP */
 
-    padding:18px 22px;
+.tip {
 
-    display:flex;
+    min-height: 80px;
 
-    justify-content:space-between;
+    padding: 17px 20px;
 
-    align-items:center;
+    background: #0d1c2e;
 
-    background:#0d1d31;
+    color: #8796aa;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
 }
 
-.output-info strong {
+.tip strong {
 
-    font-size:10px;
+    display: block;
 
-    letter-spacing:1.5px;
+    color: #55d6ff;
 
-    color:#58d5ff;
+    margin-bottom: 4px;
+
 }
 
-.output-info p {
 
-    margin-top:5px;
+/* ERROR */
 
-    color:#708097;
+.error {
 
-    font-size:12px;
-}
+    padding: 30px;
 
-.status {
+    color: #d64545;
 
-    display:flex;
+    font-family: monospace;
 
-    align-items:center;
+    font-size: 13px;
 
-    gap:7px;
-
-    font-size:9px;
-
-    letter-spacing:1px;
-
-    color:#6fcf97;
 }
 
 
 /* MOBILE */
 
-@media(max-width:850px) {
+@media (max-width: 850px) {
 
-    .coding-workspace {
+    .workspace {
 
-        grid-template-columns:1fr;
-
-    }
-
-    .editor-panel {
-
-        border-right:none;
-
-        border-bottom:1px solid rgba(255,255,255,.1);
+        grid-template-columns: 1fr;
 
     }
 
 }
 
 </style>
-
-
-
-<!-- PYTHON -->
-
-<script type="text/python">
-
-from browser import document
-from browser import window
-
-import turtle
-
-
-def run_code(event=None):
-
-    canvas = document["turtle-canvas"]
-
-    # Clear existing drawing
-    ctx = canvas.getContext("2d")
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    )
-
-
-# This function is triggered by JavaScript.
-window.runPython = run_code
-
-</script>
-
-
-<script>
-
-/*
-    IMPORTANT:
-
-    This version gives us the website/editor structure.
-
-    The next step is connecting the textarea to a real
-    browser-based Python Turtle interpreter.
-*/
-
-
-function runPython() {
-
-    const code =
-        document.getElementById("pythonCode").value;
-
-    const canvas =
-        document.getElementById("turtle-canvas");
-
-    const ctx =
-        canvas.getContext("2d");
-
-
-    // Clear canvas
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    /*
-        For the first version, we demonstrate
-        Oisin's house using the commands in his
-        Python program.
-
-        We can replace this with a full Python
-        interpreter next.
-    */
-
-
-    ctx.beginPath();
-
-    ctx.moveTo(180,350);
-
-    // house
-
-    ctx.lineTo(420,350);
-    ctx.lineTo(420,170);
-    ctx.lineTo(180,170);
-    ctx.lineTo(180,350);
-
-    // roof
-
-    ctx.moveTo(180,170);
-
-    ctx.lineTo(300,70);
-    ctx.lineTo(420,170);
-
-    // door
-
-    ctx.moveTo(270,350);
-    ctx.lineTo(270,260);
-    ctx.lineTo(330,260);
-    ctx.lineTo(330,350);
-
-    ctx.strokeStyle = "#07111f";
-
-    ctx.lineWidth = 5;
-
-    ctx.stroke();
-
-
-    document.querySelector(".status").innerHTML =
-        '<span class="status-dot"></span> RUNNING';
-}
-
-
-function clearCanvas() {
-
-    const canvas =
-        document.getElementById("turtle-canvas");
-
-    const ctx =
-        canvas.getContext("2d");
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-}
-
-</script>
-
 
 </body>
 </html>
